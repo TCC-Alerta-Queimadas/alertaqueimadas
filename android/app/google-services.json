@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "616679695249",
+    "project_id": "alerta-queimadas",
+    "storage_bucket": "alerta-queimadas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:616679695249:android:31c4fd901144f960807030",
+        "android_client_info": {
+          "package_name": "com.etec094.alertaqueimadas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "616679695249-0edsqe90959f73otkb3ir0o7523qfeuv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.etec094.alertaqueimadas",
+            "certificate_hash": "6ca35f056aa1e3baded329bde9039a9a56f33462"
+          }
+        },
+        {
+          "client_id": "616679695249-iovi6k5tkl7hg07u37k37loffqumjf8b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1TK41iontbaCHUoCgycacLWtBnjd3qYo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "616679695249-iovi6k5tkl7hg07u37k37loffqumjf8b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
