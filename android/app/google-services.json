@@ -41,6 +41,35 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:616679695249:android:75ca82b06ac11d93807030",
+        "android_client_info": {
+          "package_name": "com.example.alertaqueimada"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "616679695249-iovi6k5tkl7hg07u37k37loffqumjf8b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1TK41iontbaCHUoCgycacLWtBnjd3qYo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "616679695249-iovi6k5tkl7hg07u37k37loffqumjf8b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

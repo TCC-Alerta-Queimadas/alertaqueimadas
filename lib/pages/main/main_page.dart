@@ -22,7 +22,8 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ValueListenableBuilder<UsuarioModel?>(
         valueListenable: usuario,
-        builder: (context, usuario, widget) => Scaffold(
+        builder: (context, usuario, widget) =>         
+        Scaffold(
               appBar: AppBar(
                 actions: [
                   Visibility(
@@ -43,7 +44,8 @@ class MainPage extends StatelessWidget {
                 child: TextButton.icon(label: Text("Denuncie"), icon: Icon(Icons.camera_alt,
                   size: 80,
                   color: Colors.red,),
-                            onPressed: _denunciar(context),
+                      onPressed: () async {
+                      await _denunciar(context);} ,
                             
                            )
               ),
@@ -114,13 +116,13 @@ class MainPage extends StatelessWidget {
   }
 
 
-  _denunciar(BuildContext context) async {
-    
-    String? foto = await _tirarFoto();
+  Future<void> _denunciar(BuildContext context)  async {
+    String? foto = await _tirarFoto();  
     Position posicao = await GeolocationRepository().determinePosition();
     CompassEvent direcao = await CompassRepository().getEvent();
     DenunciaModel denuncia = DenunciaModel(id:0,foto:foto,posicao:posicao,direcao:direcao);
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => DenunciaPage(denuncia),));
+    
   }
 
 }

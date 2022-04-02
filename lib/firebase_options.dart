@@ -24,10 +24,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -56,5 +53,16 @@ class DefaultFirebaseOptions {
     messagingSenderId: '616679695249',
     projectId: 'alerta-queimadas',
     storageBucket: 'alerta-queimadas.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyBlFYp-pDpQB6YdU6eF_IljI4E9bJadlFY',
+    appId: '1:616679695249:ios:b80dcb9d288cbc30807030',
+    messagingSenderId: '616679695249',
+    projectId: 'alerta-queimadas',
+    storageBucket: 'alerta-queimadas.appspot.com',
+    androidClientId: '616679695249-0edsqe90959f73otkb3ir0o7523qfeuv.apps.googleusercontent.com',
+    iosClientId: '616679695249-mo1esh6sjagmlndj0drek47kana8b88s.apps.googleusercontent.com',
+    iosBundleId: 'com.example.alertaqueimada',
   );
 }
