@@ -21,37 +21,63 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<UsuarioModel?>(
-        valueListenable: usuario,
-        builder: (context, usuario, widget) =>         
-        Scaffold(
-              appBar: AppBar(
-                actions: [
-                  Visibility(
-                      visible: usuario == null,
-                      child: IconButton(
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => LoginPage(),
-                            ));
-                          },
-                          icon: Icon(Icons.login)))
-                ],
-                title: Text("Alerta Queimadas"),
-              ),
-              body: Container(
-                  alignment: Alignment.center,
+      valueListenable: usuario,
+      builder: (context, usuario, widget) =>
+     Scaffold(
+      appBar: AppBar(
+        actions: [
+          Visibility(
+            visible: usuario == null,
+            child: IconButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage(),
+                ));
+              },
+              icon: Icon(Icons.login)))
+        ],
+      ),
+      body: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ElevatedButton.icon(
+                  onPressed: () async {
+                    await _denunciar(context);} ,
                   
-                child: TextButton.icon(label: Text("Denuncie"), icon: Icon(Icons.camera_alt,
-                  size: 80,
-                  color: Colors.red,),
-                      onPressed: () async {
-                      await _denunciar(context);} ,
-                            
-                           )
-              ),
-              drawer: usuario == null ? null : _drawer(context, usuario),
-            ));
+                  icon: Icon(Icons.camera_alt),
+                  label: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text('Tire uma foto'),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      elevation: 0.0,
+                      textStyle: TextStyle(
+                        fontSize: 18,
+                      )),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(12.0),
+                  child: Text('ou'),
+                ),
+                OutlinedButton.icon(
+                  icon: Icon(Icons.attach_file),
+                  label: Text('Selecione um arquivo'),
+                  onPressed: () async {
+                    await _denunciar(context);} ,
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+       drawer: usuario == null ? null : _drawer(context, usuario),
+    ));
   }
+}
 
   _drawer(BuildContext context, UsuarioModel usuario) {
     return Drawer(
@@ -125,4 +151,4 @@ class MainPage extends StatelessWidget {
     
   }
 
-}
+
