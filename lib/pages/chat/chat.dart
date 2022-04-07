@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+
  
 class ChatPage extends StatelessWidget {
   
  
-  @override
+ @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Acompanhe a sua denúncia"),
+      ),
+     
+    );
   }
 }

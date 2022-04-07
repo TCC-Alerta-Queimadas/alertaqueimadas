@@ -71,15 +71,23 @@ class MainPage extends StatelessWidget {
                     await _denunciar(context);} ,
                 ),
                 Padding(
-                  padding: EdgeInsets.all(10.0),
+                  
+                  padding: const EdgeInsets.all(14.0),
                 ),
-               OutlinedButton.icon(
+               ElevatedButton.icon(
+                  
                   icon: Icon(Icons.chat_outlined),
-                  label: Text('Acompanhe a denúncia'),
+                  label: Text('Acompanhe a sua denúncia'),
+                  style: ElevatedButton.styleFrom(
+                    elevation: 13.0,
+                    textStyle: TextStyle(
+                    fontSize: 15,
+                  )),
                   onPressed: () {
                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChatPage(),
                       )); } ,
                 ),
+            
               ],
             ),
           ],

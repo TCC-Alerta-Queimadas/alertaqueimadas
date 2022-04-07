@@ -36,6 +36,7 @@ dependencies:
   firebase_storage: ^10.2.9
   geolocator: ^8.2.0
   flutter_compass: ^0.7.0
+  stream_chat_flutter: ^latest_version
  
 
 dev_dependencies:
