@@ -128,7 +128,7 @@ class MainPage extends StatelessWidget {
     try{
        final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
 
-        photo!.readAsBytes().then((imagem) {
+        return photo!.readAsBytes().then((imagem) {
 
        
      
@@ -146,7 +146,7 @@ class MainPage extends StatelessWidget {
     String? foto = await _tirarFoto();  
     Position posicao = await GeolocationRepository().determinePosition();
     CompassEvent direcao = await CompassRepository().getEvent();
-    DenunciaModel denuncia = DenunciaModel(id:0,foto:foto,posicao:posicao,direcao:direcao);
+    DenunciaModel denuncia = DenunciaModel(foto:foto,posicao:posicao,direcao:direcao);
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => DenunciaPage(denuncia),));
     
   }

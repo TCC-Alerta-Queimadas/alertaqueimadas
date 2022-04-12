@@ -3,9 +3,15 @@ import 'package:geolocator/geolocator.dart';
 
 class DenunciaModel {
   String? foto;
-  int? id;
+  String? id;
 
   Position? posicao;
   CompassEvent? direcao;
   DenunciaModel({this.id,this.foto,this.posicao,this.direcao});
+
+  Map<String, dynamic> toJson() {
+    return {"posicao": posicao!.toJson(), "direcao": {"heading":direcao!.heading!.toStringAsFixed(4)}} ;
+    
+    
+  }
 }
