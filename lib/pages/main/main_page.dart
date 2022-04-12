@@ -11,6 +11,7 @@ import 'package:flutter_compass/flutter_compass.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../chat/chat.dart';
 import '../denuncia/denuncia_page.dart';
 import '../usuario/usuario_foto_widget.dart';
 import '../usuario/usuario_page.dart';
@@ -69,6 +70,24 @@ class MainPage extends StatelessWidget {
                   onPressed: () async {
                     await _denunciar(context);} ,
                 ),
+                Padding(
+                  
+                  padding: const EdgeInsets.all(14.0),
+                ),
+               ElevatedButton.icon(
+                  
+                  icon: Icon(Icons.chat_outlined),
+                  label: Text('Acompanhe a sua denúncia'),
+                  style: ElevatedButton.styleFrom(
+                    elevation: 13.0,
+                    textStyle: TextStyle(
+                    fontSize: 15,
+                  )),
+                  onPressed: () {
+                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChatPage(),
+                      )); } ,
+                ),
+            
               ],
             ),
           ],
