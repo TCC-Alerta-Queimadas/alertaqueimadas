@@ -26,14 +26,14 @@ class _LoginWidgetState extends State<LoginWidget> {
       backgroundColor: Colors.black,
          body: Center(
             child: Container(
-              width: 300,
+              width: 280,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 
                 children: [ 
                    SizedBox(
-                     child: Image.network("image/fogo.png")   
+                     child: Image.asset("image/fogo.png")   
                    ),
                   InputField(
                     "Email",
@@ -48,10 +48,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                     true,
                     onsaved: (senha) => usuario.senha = senha,
                     
-                  ),
-                  SizedBox(
-                    height: 20, 
-                                       
                   ),
                   _botaoEntrar(),
                   _botaoCadastar(),

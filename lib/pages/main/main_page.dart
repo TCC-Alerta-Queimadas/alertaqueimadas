@@ -59,7 +59,7 @@ class MainPage extends StatelessWidget {
                       )),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(32.0),
+                  padding: EdgeInsets.all(12.0),
                   child: Text('Clique na câmera para enviar foto e local do incêndio!'),
                   )
               ],
