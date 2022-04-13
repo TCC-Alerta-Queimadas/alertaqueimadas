@@ -58,16 +58,6 @@ class MainPage extends StatelessWidget {
                         fontSize: 18,
                       )),
                 ),
-                Padding(
-                  padding: EdgeInsets.all(12.0),
-                  child: Text('ou'),
-                ),
-                OutlinedButton.icon(
-                  icon: Icon(Icons.attach_file),
-                  label: Text('Selecione um arquivo'),
-                  onPressed: () async {
-                    await _denunciar(context);} ,
-                ),
               ],
             ),
           ],
