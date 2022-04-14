@@ -73,7 +73,7 @@ usuario = widget.usuario!;
               "Email",
               Icons.mail,
               false,
-              initialValue: usuario.nome,
+              initialValue: usuario.email,
               validator: (value) {
                 if (value!.isEmpty || !value.contains('@')) {
                   return "Informe um email válido";

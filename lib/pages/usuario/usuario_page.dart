@@ -13,7 +13,7 @@ class UsuarioPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Novo Usuário"),
+        title: Text("Editar Perfil"),
       ),
      
         body: UsuarioForm(usuario:usuario,)

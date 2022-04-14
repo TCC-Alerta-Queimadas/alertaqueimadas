@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:alertaqueimada/app_store.dart';
 import 'package:alertaqueimada/model/denuncia_model.dart';
 import 'package:alertaqueimada/pages/login/login_page.dart';
@@ -60,7 +59,11 @@ class MainPage extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.all(12.0),
-                  child: Text('Clique na câmera para enviar foto e local do incêndio!'),
+                  child: Text('Clique acima para enviar a foto e o local do incêndio!',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 245, 100, 4),
+                    ),
+                  ),
                   )
               ],
             ),
