@@ -26,13 +26,15 @@ class _LoginWidgetState extends State<LoginWidget> {
       backgroundColor: Colors.black,
          body: Center(
             child: Container(
-              width: 280,
+              width: 300,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 
                 children: [ 
-                   SizedBox(
+                   Container(
+                     width: 300,
+                     height: 200,
                      child: Image.asset("image/fogo.png")   
                    ),
                   InputField(
