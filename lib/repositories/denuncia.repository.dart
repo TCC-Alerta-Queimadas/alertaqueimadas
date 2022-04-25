@@ -8,7 +8,7 @@ import '../model/denuncia_model.dart';
 class DenunciaRepository {
 
 
- Future<void> salvar (DenunciaModel denuncia) async {
+ Future<void> salvar(DenunciaModel denuncia) async {
    FirebaseFirestore firestore = FirebaseFirestore.instance;
    CollectionReference<Map<String, dynamic>> col = firestore.collection("denuncias");
    
