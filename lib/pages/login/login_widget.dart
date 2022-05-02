@@ -27,33 +27,38 @@ class _LoginWidgetState extends State<LoginWidget> {
          body: Center(
             child: Container(
               width: 300,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                
-                children: [ 
-                   Container(
-                     width: 300,
-                     height: 200,
-                     child: Image.asset("image/fogo.png")   
-                   ),
-                  InputField(
-                    "Email",
-                    Icons.email,
-                    false,
-                    onsaved: (email) => usuario.email = email,
+              child:  SingleChildScrollView(
+                child: Form(
+                  key: _key,
+                  child: Column( 
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     
+                    children: [ 
+                       Container(
+                         width: 300,
+                         height: 200,
+                         child: Image.asset("image/fogo.png")   
+                       ),
+                      InputField(
+                        "Email",
+                        Icons.email,
+                        false,
+                        onsaved: (email) => usuario.email = email,
+                        
+                      ),
+                      InputField(
+                        "Senha",
+                        Icons.password,
+                        true,
+                        onsaved: (senha) => usuario.senha = senha,
+                        
+                      ),
+                      _botaoEntrar(),
+                      _botaoCadastar(),
+                    ],
                   ),
-                  InputField(
-                    "Senha",
-                    Icons.password,
-                    true,
-                    onsaved: (senha) => usuario.senha = senha,
-                    
-                  ),
-                  _botaoEntrar(),
-                  _botaoCadastar(),
-                ],
+                ),
               ),
             ),
           ),
