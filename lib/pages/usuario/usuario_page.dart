@@ -17,6 +17,7 @@ class UsuarioPage extends StatelessWidget {
       ),
      
         body: UsuarioForm(usuario:usuario,)
+        
     );
   }
 }

@@ -140,13 +140,17 @@ usuario = widget.usuario!;
 
     }
    await  UsuarioRepository().salvar(usuario);
-   Navigator.of(context).pop();
+   Navigator.of(context).pop(usuario);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
        ScaffoldMessenger.of(context).showSnackBar(
          SnackBar(content: Text 
          ('A senha informada é muito fácil.')));
       } else if (e.code == 'email-already-in-use') {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text
+          ("Email já foi utilizado por outra conta")
+        ));
         print('Email já foi utilizado por outra conta.');
       }
     } catch (e) {
