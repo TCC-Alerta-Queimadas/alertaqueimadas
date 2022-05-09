@@ -21,11 +21,13 @@ class MainPage extends StatelessWidget {
     return ValueListenableBuilder<UsuarioModel?>(
       valueListenable: usuario,
       builder: (context, usuario, widget) =>
+      
      Scaffold(
       appBar: AppBar(
         actions: [
           Visibility(
             visible: usuario == null,
+            
             child: IconButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage(),
@@ -70,18 +72,21 @@ class MainPage extends StatelessWidget {
           ],
         ),
       ),
-       drawer: usuario == null ? null : _drawer(context, usuario),
+       drawer: usuario == null ? null : _drawer(context),
     ));
   }
 }
 
-  _drawer(BuildContext context, UsuarioModel usuario) {
-    return Drawer(
-      backgroundColor: Colors.grey[900],
+  _drawer(BuildContext context) {
+    return ValueListenableBuilder(
+      valueListenable: usuario,
+      builder: (BuildContext context, UsuarioModel? snapshot, Widget? child) {
+        return      Drawer(
+      backgroundColor: Color.fromARGB(255, 0, 0, 0),
       elevation: 5,
       child: Container(
         child: Column(
-          children: [
+          children: [ 
             Container(
               width: double.infinity,
               height: 140,
@@ -94,22 +99,40 @@ class MainPage extends StatelessWidget {
                         CircleAvatar(
                           radius: 55.0,
                           backgroundImage:
-                              FotoUsuarioImage().getFotoWidget(usuario),
+                              FotoUsuarioImage().getFotoWidget(snapshot),
                         ),
-                        Text("${usuario.nome}"),
+                        Text("${snapshot?.nome??''}"),
+
+                        ElevatedButton.icon(
+                  onPressed: () async {
+                    await _denunciar(context);} ,
+                  
+                  icon: Icon(Icons.camera_alt),
+                  label: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text('Minhas denúncias'),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      elevation: 0.0,
+                      textStyle: TextStyle(
+                        fontSize: 18,
+                      ))),
                       ],
                     ),
                     Positioned(
                         right: 2,
                         top: 2,
+                        
                         child: IconButton(
-                            onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
+                            onPressed: () async { 
+                              usuario = await Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) =>
-                                      UsuarioPage(usuario: usuario)));
+                                      UsuarioPage(usuario: snapshot)));
+                                
                             },
                             icon: Icon(Icons.edit)))
                   ],
+                  
                 ),
               ),
             )
@@ -117,6 +140,11 @@ class MainPage extends StatelessWidget {
         ),
       ),
     );
+
+      },
+    );
+    
+    
   }
 
   Future<String?> _tirarFoto() async {

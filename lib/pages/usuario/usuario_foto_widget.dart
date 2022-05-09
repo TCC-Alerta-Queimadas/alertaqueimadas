@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 class FotoUsuarioImage   {
   
-  getFotoWidget(UsuarioModel usuario){
+  getFotoWidget(UsuarioModel? usuario){
 
     if(usuario!=null && usuario.foto != null){
       if(usuario.foto!.contains("https")) {
