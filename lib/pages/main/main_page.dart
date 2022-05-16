@@ -103,36 +103,10 @@ class MainPage extends StatelessWidget {
                         ),
                         Text("${snapshot?.nome??''}"),
 
-                        ElevatedButton.icon(
-                  onPressed: () async {
-                    await _denunciar(context);} ,
-                  
-                  icon: Icon(Icons.camera_alt),
-                  label: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Text('Minhas denúncias'),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                      elevation: 0.0,
-                      textStyle: TextStyle(
-                        fontSize: 18,
-                      ))),
+                       
                       ],
                     ),
-                    Positioned(
-                        right: 2,
-                        top: 2,
-                        
-                        child: IconButton(
-                            onPressed: () async { 
-                              usuario = await Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) =>
-                                      UsuarioPage(usuario: snapshot)));
-                                
-                            },
-                            icon: Icon(Icons.edit)))
                   ],
-                  
                 ),
               ),
             )
