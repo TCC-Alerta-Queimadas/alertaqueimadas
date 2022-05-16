@@ -102,10 +102,18 @@ class MainPage extends StatelessWidget {
                               FotoUsuarioImage().getFotoWidget(snapshot),
                         ),
                         Text("${snapshot?.nome??''}"),
-
-                       
                       ],
                     ),
+                     Positioned(
+                        right: 2,
+                        top: 2,
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      UsuarioPage(usuario: snapshot)));
+                            },
+                            icon: Icon(Icons.edit)))
                   ],
                 ),
               ),
@@ -120,6 +128,7 @@ class MainPage extends StatelessWidget {
     
     
   }
+   
 
   Future<String?> _tirarFoto() async {
     final ImagePicker _picker = ImagePicker();
