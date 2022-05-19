@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 
 import 'login_widget.dart';
 
-
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
 
@@ -15,25 +14,24 @@ class LoginPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<LoginPage> {
-
   autenticacao() {
     FirebaseAuth.instance.authStateChanges().listen((User? user) async {
       if (user == null) {
         print('Usuário fez logout!');
-        setState(() {
-          usuario.value = null;
-        });
+        usuario.value = null;
       } else {
         print('Usuario fez SigIn!');
-        var snapshot = 
-          FirebaseFirestore.instance.collection('usuarios').doc(user.uid);
-        var fbUser =(await snapshot.get()).data();
-        if (fbUser!=null){
-        setState(() {
+        var snapshot =
+            FirebaseFirestore.instance.collection('usuarios').doc(user.uid);
+        var fbUser = (await snapshot.get()).data();
+        if (fbUser != null) {
           usuario.value = UsuarioModel(
-              id: user.uid, nome: fbUser['nome'], email: user.email, foto:fbUser['foto']);
-        });
-      }}
+              id: user.uid,
+              nome: fbUser['nome'],
+              email: user.email,
+              foto: fbUser['foto']);
+        }
+      }
     });
   }
 
@@ -46,11 +44,9 @@ class _MainPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-      ),
-      body: LoginWidget() );
+        appBar: AppBar(
+          elevation: 0,
+        ),
+        body: LoginWidget());
   }
 }
-
-

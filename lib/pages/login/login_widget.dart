@@ -1,10 +1,8 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../input_field.dart';
 import '../../model/usuario_model.dart';
 import '../usuario/usuario_page.dart';
-
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({Key? key}) : super(key: key);
@@ -19,50 +17,43 @@ class _LoginWidgetState extends State<LoginWidget> {
   GlobalKey<FormState> _key = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-   
-    
     return Scaffold(
-      
       backgroundColor: Colors.black,
-         body: Center(
-            child: Container(
-              width: 300,
-              child:  SingleChildScrollView(
-                child: Form(
-                  key: _key,
-                  child: Column( 
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    
-                    children: [ 
-                       Container(
-                         width: 300,
-                         height: 200,
-                         child: Image.asset("image/fogo.png")   
-                       ),
-                      InputField(
-                        "Email",
-                        Icons.email,
-                        false,
-                        onsaved: (email) => usuario.email = email,
-                        
-                      ),
-                      InputField(
-                        "Senha",
-                        Icons.password,
-                        true,
-                        onsaved: (senha) => usuario.senha = senha,
-                        
-                      ),
-                      _botaoEntrar(),
-                      _botaoCadastar(),
-                    ],
+      body: Center(
+        child: Container(
+          width: 300,
+          child: SingleChildScrollView(
+            child: Form(
+              key: _key,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                      width: 300,
+                      height: 200,
+                      child: Image.asset("image/fogo.png")),
+                  InputField(
+                    "Email",
+                    Icons.email,
+                    false,
+                    onsaved: (email) => usuario.email = email,
                   ),
-                ),
+                  InputField(
+                    "Senha",
+                    Icons.password,
+                    true,
+                    onsaved: (senha) => usuario.senha = senha,
+                  ),
+                  _botaoEntrar(),
+                  _botaoCadastar(),
+                ],
               ),
             ),
           ),
-          );
+        ),
+      ),
+    );
   }
 
   _botaoEntrar() {
@@ -70,11 +61,8 @@ class _LoginWidgetState extends State<LoginWidget> {
       children: [
         Expanded(
             child: ElevatedButton(
-              
-          style: TextButton.styleFrom(
-            backgroundColor: Color.fromARGB(255, 245, 100, 4)
-          
-        ),
+                style: TextButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 245, 100, 4)),
                 onPressed: () async {
                   await _login();
                   Navigator.of(context).pop();
@@ -88,20 +76,21 @@ class _LoginWidgetState extends State<LoginWidget> {
     return Padding(
       padding: const EdgeInsets.only(top: 12.0),
       child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Text("Não tem uma conta?  ",style: TextStyle(
-          color: Colors.grey,
-        ),),
+        Text(
+          "Não tem uma conta?  ",
+          style: TextStyle(
+            color: Colors.grey,
+          ),
+        ),
         TextButton(
-          
             onPressed: () {
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (context) => UsuarioPage()));
             },
             child: Text("Cadastre-se",
-            style: TextStyle(
-              color: Color.fromARGB(255, 245, 100, 4),
-            )
-            ))
+                style: TextStyle(
+                  color: Color.fromARGB(255, 245, 100, 4),
+                )))
       ]),
     );
   }
@@ -110,17 +99,17 @@ class _LoginWidgetState extends State<LoginWidget> {
     _key.currentState!.save();
 
     try {
-      UserCredential userCredential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(
-              email: usuario.email!, password: usuario.senha!);
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: usuario.email!, password: usuario.senha!);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('Nenhum usuário com este email.');
-         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Email desconhecido!")));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Email desconhecido!")));
       } else if (e.code == 'wrong-password') {
         print('Senha incorreta.');
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Senha incorreta!")));
-
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Senha incorreta!")));
       }
     }
   }

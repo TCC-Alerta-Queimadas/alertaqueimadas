@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'package:alertaqueimada/input_field.dart';
 import 'package:alertaqueimada/pages/usuario/usuario_foto_widget.dart';
@@ -8,12 +7,9 @@ import 'package:image_picker/image_picker.dart';
 import '../../model/usuario_model.dart';
 import '../../repositories/usuario.repository.dart';
 
-
 class UsuarioForm extends StatefulWidget {
- final UsuarioModel? usuario;
+  final UsuarioModel? usuario;
   const UsuarioForm({Key? key, this.usuario}) : super(key: key);
-
- 
 
   @override
   State<UsuarioForm> createState() => _UsuarioFormState();
@@ -21,16 +17,16 @@ class UsuarioForm extends StatefulWidget {
 
 class _UsuarioFormState extends State<UsuarioForm> {
   GlobalKey<FormState> _key = GlobalKey<FormState>();
-   UsuarioModel usuario = UsuarioModel();
+  UsuarioModel usuario = UsuarioModel();
 
   @override
-void initState() {
-super.initState();
-if (widget.usuario!=null){
-usuario = widget.usuario!;
-}
-}
-  
+  void initState() {
+    super.initState();
+    if (widget.usuario != null) {
+      usuario = widget.usuario!;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     String senha = "";
@@ -41,29 +37,26 @@ usuario = widget.usuario!;
         key: _key,
         child: Column(
           children: [
-          
-          GestureDetector(
-            onTap: _tirarfoto, 
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CircleAvatar(
-                   radius: 80,
-                   backgroundImage: FotoUsuarioImage().getFotoWidget(usuario), 
-                   
+            GestureDetector(
+              onTap: _tirarfoto,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CircleAvatar(
+                  radius: 80,
+                  backgroundImage: FotoUsuarioImage().getFotoWidget(usuario),
+                ),
               ),
             ),
-          ),
-
-
             InputField(
               "Nome",
               Icons.autofps_select_sharp,
               false,
-             initialValue: usuario.nome,
+              initialValue: usuario.nome,
               validator: (value) {
                 if (value!.isEmpty) {
                   return "Campo não pode ficar vazio";
-                }else return null;
+                } else
+                  return null;
               },
               onsaved: (value) {
                 usuario.nome = value;
@@ -88,7 +81,8 @@ usuario = widget.usuario!;
               Icons.password,
               true,
               validator: (value) {
-                if ((value!.isEmpty || value.length < 3) &&  (usuario.id == null) ){ 
+                if ((value!.isEmpty || value.length < 3) &&
+                    (usuario.id == null)) {
                   return "A senha deve ter ao menos 3 caracteres";
                 } else {
                   senha = value;
@@ -128,29 +122,24 @@ usuario = widget.usuario!;
 
   salvar(UsuarioModel usuario) async {
     try {
-      if(usuario.id==null){ 
+      if (usuario.id == null) {
         //se for usuario novo
-      UserCredential userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-              email: usuario.email!, password: usuario.senha!);
-              usuario.id = userCredential.user!.uid;
-
-    } else  if(usuario.senha?.isNotEmpty ?? false){
-  await FirebaseAuth.instance.currentUser!.updatePassword(usuario.senha!);
-
-    }
-   await  UsuarioRepository().salvar(usuario);
-   Navigator.of(context).pop(usuario);
+        UserCredential userCredential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+                email: usuario.email!, password: usuario.senha!);
+        usuario.id = userCredential.user!.uid;
+      } else if (usuario.senha?.isNotEmpty ?? false) {
+        await FirebaseAuth.instance.currentUser!.updatePassword(usuario.senha!);
+      }
+      await UsuarioRepository().salvar(usuario);
+      Navigator.of(context).pop(usuario);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-       ScaffoldMessenger.of(context).showSnackBar(
-         SnackBar(content: Text 
-         ('A senha informada é muito fácil.')));
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('A senha informada é muito fácil.')));
       } else if (e.code == 'email-already-in-use') {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text
-          ("Email já foi utilizado por outra conta")
-        ));
+            SnackBar(content: Text("Email já foi utilizado por outra conta")));
         print('Email já foi utilizado por outra conta.');
       }
     } catch (e) {
@@ -160,20 +149,16 @@ usuario = widget.usuario!;
 
   Future<void> _tirarfoto() async {
     final ImagePicker _picker = ImagePicker();
-    try{
-       final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+    try {
+      final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
 
-        photo!.readAsBytes().then((imagem) {
-
-       setState(()  {
-     
-         usuario.foto = base64Encode(imagem);
-       });
+      photo!.readAsBytes().then((imagem) {
+        setState(() {
+          usuario.foto = base64Encode(imagem);
+        });
       });
     } catch (e) {
       print("Erro selecionando a foto do usuário: $e");
     }
-    
   }
-
 }

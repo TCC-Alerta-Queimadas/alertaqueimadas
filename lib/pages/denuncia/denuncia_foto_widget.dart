@@ -6,7 +6,7 @@ import '../../model/denuncia_model.dart';
 
 class FotoDenunciaImage {
   ImageProvider getFotoWidget(DenunciaModel denuncia) {
-    if (denuncia != null && denuncia.foto != null) {
+    if (denuncia.foto != null) {
       if (denuncia.foto!.contains("https")) {
         return NetworkImage(denuncia.foto!);
       } else {
