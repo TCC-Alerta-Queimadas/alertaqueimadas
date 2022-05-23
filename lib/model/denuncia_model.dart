@@ -16,11 +16,17 @@ class DenunciaModel {
     };
   }
 
+   
+
+
   factory DenunciaModel.fromMap(Map<String, dynamic> reg) {
+    List<double> direcaoDb = reg['direcao']!=null?[double.tryParse(reg['direcao']['heading'])!,0.0,0.0]:[0.0,0.0,0.0];
+    CompassEvent ce = CompassEvent.fromList(direcaoDb);
     return DenunciaModel(
       id: reg['id'] ?? "",
-      direcao: reg['direcao'] ?? "",
+      direcao: ce,
       foto: reg['foto'] ?? "",
+      posicao: Position.fromMap(reg['posicao'])
     );
   }
 }
