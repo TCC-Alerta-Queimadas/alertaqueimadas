@@ -30,7 +30,7 @@ class ConsultaPage extends StatelessWidget {
             
                       snapshot.data![index].posicao==null?Container():MapaWidget(
                         index, 
-                        snapshot.data![index].posicao!),
+                        snapshot.data![index].posicao!,snapshot.data![index].direcao!),
                         Positioned(
                           bottom: 0,
                           right: -30,
