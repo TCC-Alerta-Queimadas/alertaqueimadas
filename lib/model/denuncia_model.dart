@@ -26,7 +26,7 @@ class DenunciaModel {
       id: reg['id'] ?? "",
       direcao: ce,
       foto: reg['foto'] ?? "",
-      posicao: Position.fromMap(reg['posicao'])
+      posicao: reg['posicao'] !=null ? Position.fromMap(reg['posicao']):null
     );
   }
 }
