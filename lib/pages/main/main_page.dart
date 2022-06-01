@@ -6,6 +6,7 @@ import 'package:alertaqueimada/pages/login/login_page.dart';
 import 'package:alertaqueimada/model/usuario_model.dart';
 import 'package:alertaqueimada/repositories/compass_repository.dart';
 import 'package:alertaqueimada/repositories/geolocation_repository.dart';
+import 'package:alertaqueimada/repositories/usuario.repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_compass/flutter_compass.dart';
 import 'package:geolocator/geolocator.dart';
@@ -153,3 +154,10 @@ Future<void> _denunciar(BuildContext context) async {
     builder: (context) => DenunciaPage(denuncia),
   ));
 }
+
+Future<void> _logout() async {
+
+    await UsuarioRepository().logout();
+
+  }
+

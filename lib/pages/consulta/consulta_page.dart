@@ -1,8 +1,11 @@
 import 'package:alertaqueimada/model/denuncia_model.dart';
 import 'package:alertaqueimada/pages/consulta/imagefull_widget.dart';
+import 'package:alertaqueimada/pages/main/main_page.dart';
 import 'package:alertaqueimada/repositories/denuncia.repository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../../repositories/usuario.repository.dart';
 import 'mapa_widget.dart';
 
 class ConsultaPage extends StatelessWidget {
@@ -11,7 +14,26 @@ class ConsultaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          actions: [
+            Expanded(child: Row(  
+             crossAxisAlignment: CrossAxisAlignment.center,
+             mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  
+                  alignment: Alignment.bottomRight,
+                  child:  IconButton(
+                    onPressed: () {
+
+                            logout();
+                          },
+                  icon: const Icon(Icons.logout, color: Colors.red,),),
+                )
+              ],
+            )),
+          ],
+             ),            
         body: FutureBuilder<List<DenunciaModel>>(
           initialData: [],
           future: DenunciaRepository().listaDenuncias(),
@@ -50,3 +72,10 @@ class ConsultaPage extends StatelessWidget {
         ));
   }
 }
+
+logout() async {
+
+    await FirebaseAuth.instance.signOut();
+
+  }
+

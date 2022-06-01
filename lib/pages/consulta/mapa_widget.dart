@@ -69,7 +69,7 @@ class _MapaWidgetState extends State<MapaWidget> {
                       },
                       child: Transform.rotate(angle: widget.direcao.heading??0.0,
                           child: Icon(
-                            Icons.arrow_upward_sharp,
+                            Icons.call_merge_sharp,
                             color: Colors.red,
                           ))),
                 ),
